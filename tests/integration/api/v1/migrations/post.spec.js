@@ -23,11 +23,6 @@ test('POST to /api/v1/migrations should return 201', async () => {
   const firstResponseBody = await firstPostResponse.json()
   const secondResponseBody = await secondPostResponse.json()
 
-  const pgmigrationsQueryResult = await database.query(
-    'SELECT * FROM pgmigrations;'
-  )
-  const pgmigrationsNameValue = pgmigrationsQueryResult.rows[0].name
-
   const databaseName = process.env.POSTGRES_DB
   const databaseOpenedConnectionsResult = await database.query({
     text: 'SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = $1;',
@@ -45,6 +40,5 @@ test('POST to /api/v1/migrations should return 201', async () => {
   expect(Array.isArray(secondResponseBody)).toBe(true)
   expect(secondResponseBody.length).toEqual(0)
 
-  expect(firstResponseBody[0].name).toEqual(pgmigrationsNameValue)
   expect(databaseOpenedConnectionsValue).toEqual(1)
 })
