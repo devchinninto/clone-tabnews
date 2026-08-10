@@ -13,9 +13,9 @@ function checkPostgres() {
       return
     }
 
-    console.log('\n\n🟢 Postgres está pronto e aceitando conexões!\n')
+    console.log('\n\n🟢 Postgres is ready and accepting connections!\n')
   }
 }
 
-process.stdout.write('\n\n🔴 Aguardando Postgres aceitar conexões')
+process.stdout.write('\n\n⚫ Waiting for Postgres')
 checkPostgres()
