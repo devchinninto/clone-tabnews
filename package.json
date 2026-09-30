@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "imports": {
+    "@/*": "./src/*"
+  },
   "scripts": {
     "dev": "node infra/scripts/dev.js",
     "test": "npm run services:up && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
